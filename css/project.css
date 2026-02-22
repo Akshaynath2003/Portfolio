@@ -1,0 +1,247 @@
+/* ===== project.css ===== */
+
+.page-hero {
+    padding: 4rem 0 2rem;
+}
+
+/* Filter tabs */
+.filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    padding: 0.55rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-main);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--gradient-main);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+}
+
+/* Empty State */
+.empty-projects {
+    text-align: center;
+    padding: 5rem 2rem;
+    display: none;
+    /* hidden when projects exist */
+}
+
+.empty-icon {
+    font-size: 4rem;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 1.5rem;
+}
+
+.empty-projects h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.empty-projects p {
+    color: var(--text-secondary);
+    max-width: 450px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+}
+
+.empty-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Projects grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+
+/* Project Card */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.project-image {
+    width: 100%;
+}
+
+.project-image-placeholder {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.project-card:hover .project-image-placeholder {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(6, 182, 212, 0.15));
+}
+
+.project-type-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-family: var(--font-code);
+    background: rgba(124, 58, 237, 0.2);
+    color: var(--accent-violet);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.project-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.project-desc {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    flex: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+/* Add Project card */
+.add-project-card {
+    border: 2px dashed rgba(124, 58, 237, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    background: rgba(124, 58, 237, 0.03) !important;
+    cursor: pointer;
+}
+
+.add-project-card:hover {
+    border-color: rgba(124, 58, 237, 0.6);
+    background: rgba(124, 58, 237, 0.08) !important;
+}
+
+.add-project-content {
+    text-align: center;
+    padding: 2rem;
+}
+
+.add-icon {
+    font-size: 2.5rem;
+    color: var(--accent-violet);
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.add-project-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.add-project-content p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* GitHub banner */
+.github-banner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 2.5rem;
+    flex-wrap: wrap;
+}
+
+.github-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--bg-card-hover);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.github-banner>div {
+    flex: 1;
+}
+
+.github-banner h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.github-banner p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .github-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
