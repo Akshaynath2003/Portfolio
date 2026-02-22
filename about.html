@@ -178,21 +178,17 @@
                 <h2 class="section-title">Photo <span>Gallery</span></h2>
 
                 <!-- Drop Zone -->
-                <div class="gallery-drop-zone" id="dropZone"
-                    style="border: 2px dashed var(--primary-color, #7c3aed); border-radius: 12px; padding: 2rem; text-align: center; cursor: pointer; margin-bottom: 1.5rem; transition: all 0.3s ease;">
-                    <div class="drop-zone-content">
-                        <span class="upload-icon"
-                            style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📁</span>
-                        <p>Drag & Drop your photos here or <strong style="color: var(--primary-color, #7c3aed);">Click
-                                to Browse</strong></p>
-                    </div>
-                </div>
+
                 <input type="file" id="fileInput" multiple accept="image/*" style="display:none;" />
 
-                <!-- Empty hint -->
                 <div class="gallery-empty" id="galleryEmpty"
-                    style="text-align: center; margin: 2rem 0; color: #a1a1aa;">
-                    <p>No photos added yet. Add some to get started!</p>
+                    style="margin: 2rem 0; color: #a1a1aa; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <img src="assets/images/what1.jpeg" alt="My Photos" width="300"
+                        style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                    <img src="assets/images/what2.jpeg" alt="My Photos" width="300"
+                        style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                    <img src="assets/images/what3.jpeg" alt="My Photos" width="300"
+                        style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                 </div>
 
 
