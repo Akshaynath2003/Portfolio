@@ -232,4 +232,13 @@
     .interests-grid {
         grid-template-columns: 1fr;
     }
+
+    .about-avatar-frame {
+        max-width: 220px;
+    }
+
+    .quick-facts {
+        padding: 1.2rem;
+        width: 100%;
+    }
 }

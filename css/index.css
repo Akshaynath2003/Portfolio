@@ -444,6 +444,7 @@
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: center;
+        padding-top: 2rem;
     }
 
     .hero-avatar-wrapper {
@@ -473,5 +474,18 @@
 @media (max-width: 500px) {
     .stats-grid {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-name {
+        font-size: 2.2rem;
+    }
+
+    .hero-avatar-wrapper {
+        height: 250px;
+    }
+
+    .avatar-ring-outer {
+        width: 180px;
+        height: 180px;
     }
 }
