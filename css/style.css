@@ -755,13 +755,14 @@ footer a:hover {
 }
 
 .home__name {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 8vw, 4rem);
   font-weight: 800;
   margin-bottom: 0.5rem;
   background: var(--gradient-main);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  white-space: nowrap;
 }
 
 .home__education {
