@@ -82,7 +82,23 @@ function resetForm() {
             subjectText = subjectEl.options[subjectEl.selectedIndex].text;
         }
 
-        fetch("https://formsubmit.co/ajax/akshaynathmr121@gmail.com", {
+        // 1. Prepare Google Forms Payload
+        const googleFormData = new URLSearchParams();
+        googleFormData.append("entry.98294292", fname);
+        googleFormData.append("entry.1871879046", lname);
+        googleFormData.append("entry.1756738024", email);
+        googleFormData.append("entry.1818650477", subjectText || "Portfolio Contact");
+        googleFormData.append("entry.1281453925", message);
+
+        // Send to Google Forms silently mapped to your specific docs URL
+        const googlePromise = fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSeoS4FuJbJupXNwZAwi8PBepm-rxW2kBV7adfb0BSudqHqzwQ/formResponse", {
+            method: "POST",
+            mode: "no-cors",
+            body: googleFormData
+        });
+
+        // 2. Prepare traditional FormSubmit Payload
+        const formSubmitPromise = fetch("https://formsubmit.co/ajax/akshaynathmr121@gmail.com", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -94,9 +110,11 @@ function resetForm() {
                 _subject: subjectText,
                 message: message
             })
-        })
-            .then(response => response.json())
-            .then(data => {
+        });
+
+        // Execute both tracking strategies simultaneously
+        Promise.all([googlePromise, formSubmitPromise])
+            .then(responses => {
                 form.style.display = 'none';
                 const success = document.getElementById('formSuccess');
                 if (success) success.style.display = '';

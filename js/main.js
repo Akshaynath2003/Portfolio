@@ -122,20 +122,41 @@
     });
 })();
 
-// ---- NAV SCROLL EFFECT ----
+// ---- HEADER SCROLL EFFECT ----
 window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (!nav) return;
+    const header = document.querySelector('.header');
+    if (!header) return;
     if (window.scrollY > 20) {
-        nav.style.borderBottomColor = 'rgba(255,255,255,0.12)';
-        nav.style.background = 'rgba(10,10,18,0.95)';
+        header.classList.add('scroll-header');
     } else {
-        nav.style.borderBottomColor = '';
-        nav.style.background = '';
+        header.classList.remove('scroll-header');
     }
 });
 
-// ---- HAMBURGER MENU ----
+// ---- SCROLL SPY FOR SPA BOTTOM NAV ----
+const sections = document.querySelectorAll('section[id]');
+    
+function scrollActive() {
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+              sectionTop = current.offsetTop - 58,
+              sectionId = current.getAttribute('id');
+              
+        const link = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
+        if(!link) return;
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            link.classList.add('active-link');
+        } else {
+            link.classList.remove('active-link');
+        }
+    });
+}
+window.addEventListener('scroll', scrollActive);
+
+// ---- HAMBURGER MENU (Deprecated in SPA) ----
 (function initHamburgerMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -152,5 +173,39 @@ window.addEventListener('scroll', () => {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
         });
+    });
+})();
+
+// ---- DARK/LIGHT THEME TOGGLE ----
+(function initTheme() {
+    const themeButton = document.getElementById('theme-button');
+    if (!themeButton) return;
+
+    const lightTheme = 'light-theme';
+    const iconTheme = 'bx-sun'; // We change moon to sun when light theme is active
+
+    // Previously selected topic (if user selected)
+    const selectedTheme = localStorage.getItem('selected-theme');
+    const selectedIcon = localStorage.getItem('selected-icon');
+
+    // We obtain the current theme that the interface has by validating the light-theme class
+    const getCurrentTheme = () => document.body.classList.contains(lightTheme) ? 'light' : 'dark';
+    const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'bx-sun' : 'bx-moon';
+
+    // We validate if the user previously chose a topic
+    if (selectedTheme) {
+      document.body.classList[selectedTheme === 'light' ? 'add' : 'remove'](lightTheme);
+      themeButton.classList[selectedIcon === 'bx-sun' ? 'add' : 'remove'](iconTheme);
+    }
+
+    // Activate / deactivate the theme manually with the button
+    themeButton.addEventListener('click', () => {
+        // Add or remove the light / icon theme
+        document.body.classList.toggle(lightTheme);
+        themeButton.classList.toggle(iconTheme);
+        
+        // We save the theme and the current icon that the user chose
+        localStorage.setItem('selected-theme', getCurrentTheme());
+        localStorage.setItem('selected-icon', getCurrentIcon());
     });
 })();

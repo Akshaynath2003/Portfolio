@@ -8,26 +8,50 @@
     <title>Portfolio | Contact</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/contact.css" />
+    <!-- BOXICONS -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <!-- NAV -->
-    <nav>
-        <a href="index.html" class="nav-logo">Ak Portfolio</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="project.html">Projects</a></li>
-            <li><a href="resume.html">Resume</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">Ak Portfolio</a>
+            <!-- Theme Change Button -->
+            <i class='bx bx-moon change-theme' id="theme-button"></i>
+        </nav>
+    </header>
+
+    <!-- BOTTOM NAV DOCK -->
+    <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a href="index.html" class="nav__link">
+                    <i class='bx bx-home'></i>
+                </a>
+            </li>
+            <li class="nav__item">
+                <a href="about.html" class="nav__link">
+                    <i class='bx bx-user'></i>
+                </a>
+            </li>
+            <li class="nav__item">
+                <a href="resume.html" class="nav__link">
+                    <i class='bx bx-book'></i>
+                </a>
+            </li>
+            <li class="nav__item">
+                <a href="project.html" class="nav__link">
+                    <i class='bx bx-briefcase-alt-2'></i>
+                </a>
+            </li>
+            <li class="nav__item">
+                <a href="contact.html" class="nav__link active-link">
+                    <i class='bx bx-message-square-dots'></i>
+                </a>
+            </li>
         </ul>
-        <a href="contact.html" class="nav-cta">Hire Me ✨</a>
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-    </nav>
+    </div>
 
     <div class="page-wrapper">
 

@@ -6,6 +6,7 @@
 
 /* ---- CSS Variables ---- */
 :root {
+  /* Dark Mode (Default) */
   --bg-primary: #0a0a12;
   --bg-secondary: #0f0f1e;
   --bg-card: rgba(255, 255, 255, 0.04);
@@ -28,6 +29,24 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --font-main: 'Inter', sans-serif;
   --font-code: 'Fira Code', monospace;
+  --nav-bg: rgba(10, 10, 18, 0.8);
+  --nav-bg-scrolled: rgba(10, 10, 18, 0.95);
+}
+
+/* Light Theme Variables */
+body.light-theme {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --border: #e2e8f0;
+  --border-hover: rgba(124, 58, 237, 0.8);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.05);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.95);
 }
 
 /* ---- Reset ---- */
@@ -50,6 +69,7 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
   min-height: 100vh;
+  transition: background-color 0.4s, color 0.4s;
 }
 
 a {
@@ -104,10 +124,15 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(10, 10, 18, 0.8);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
+}
+
+nav.scrolled {
+  background: var(--nav-bg-scrolled);
+  border-bottom-color: var(--border-hover);
 }
 
 .nav-logo {
@@ -586,5 +611,255 @@ footer a:hover {
 @media (max-width: 500px) {
   .container {
     padding: 0 1.25rem;
+  }
+}
+
+/* =========================================
+   SPA LAYOUT RESTRUCTURE CSS
+   ========================================= */
+
+/* ---- HEADER ---- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+.header.scroll-header {
+  box-shadow: var(--shadow-card);
+}
+
+.nav {
+  height: 4.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+#theme-button {
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: .3s;
+}
+
+/* ---- BOTTOM NAV DOCK ---- */
+/* Default for mobile and desktop */
+.nav__menu {
+  position: fixed;
+  bottom: 1rem;
+  background-color: var(--nav-bg-scrolled);
+  width: 90%;
+  max-width: 400px;
+  backdrop-filter: blur(20px);
+  border-radius: 4rem;
+  padding: 1rem 2.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 24px hsla(228, 66%, 45%, .15);
+  z-index: 1000;
+  border: 1px solid var(--border);
+}
+
+@media screen and (min-width: 768px) {
+  .nav__menu {
+    max-width: 500px;
+  }
+}
+
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.nav__link {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  padding: 0.4rem;
+  display: flex;
+  border-radius: 5rem;
+  transition: var(--transition);
+}
+
+.nav__link:hover,
+.active-link {
+  color: white;
+  background: var(--gradient-main);
+}
+
+/* ---- HOME HERO SECTION ---- */
+.home {
+  padding-top: 8rem !important; /* compensate for top header */
+}
+
+.home__container {
+  display: grid;
+  gap: 2rem;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 992px) {
+  .home__container {
+    grid-template-areas: 
+      "social data handle"
+      "scroll data handle";
+    grid-template-columns: 80px 1fr max-content;
+    column-gap: 3rem;
+    align-items: center;
+    padding-top: 5rem;
+  }
+  .home__social { 
+    grid-area: social; 
+    justify-self: center;
+    align-self: flex-end;
+  }
+  .home__data { 
+    grid-area: data; 
+    justify-self: flex-start;
+  }
+  .home__handle { 
+    grid-area: handle; 
+    justify-self: right;
+  }
+  .home__scroll { 
+    grid-area: scroll; 
+    justify-self: center; 
+    align-self: flex-start;
+    padding-top: 2rem;
+  }
+}
+
+.home__greeting {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.home__name {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home__education {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.home__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 992px) {
+  .home__button {
+      justify-content: flex-start;
+  }
+}
+
+/* Home Image/Arched */
+.home__handle {
+  justify-self: center;
+  width: 280px;
+  height: 380px;
+  background: var(--gradient-main);
+  border-radius: 10rem 10rem 1rem 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: var(--shadow-glow);
+}
+
+.home__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10rem 10rem 1rem 1rem;
+  padding: 4px; /* leaves gradient boundary border */
+  background-clip: content-box;
+}
+
+/* Home Social (Left side on desktop, bottom on mobile) */
+.home__social {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 992px) {
+  .home__social {
+    flex-direction: column;
+    row-gap: 1.5rem;
+    margin-top: 0;
+    align-items: center;
+  }
+  .home__social::after {
+    content: '';
+    width: 2px;
+    height: 30px;
+    background-color: var(--text-muted);
+    margin-top: 1rem;
+  }
+}
+
+.home__social-link {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.home__social-link:hover {
+  color: var(--accent-purple);
+  transform: translateY(-3px);
+}
+
+/* Scroll Down Indicator */
+.home__scroll {
+  display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .home__scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.5rem;
+    color: var(--text-secondary);
+  }
+  .home__scroll-name {
+    transform: rotate(-90deg);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 3rem;
+  }
+  .home__scroll-icon {
+    font-size: 1.5rem;
   }
 }
